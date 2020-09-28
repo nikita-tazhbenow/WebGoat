@@ -26,6 +26,16 @@ pipeline{
                 echo "Finished!"
             }
         } 
+	stage("Dependency analysis"){
+            steps{
+                echo "Performing OSS analysis from the commit..."
+                sh "rm owasp* || true"
+                sh "wget https://raw.githubusercontent.com/nikita-tazhbenow/WebGoat/develop/owasp-dependency-check.sh"
+                sh "chmod +x owasp-dependency-check.sh"
+                sh "bash owasp-dependency-check.sh"
+                echo "Finished!"
+            }
+        }
         stage("Build code"){
             steps{
                 echo "Building code in progress..."
@@ -33,16 +43,6 @@ pipeline{
                 echo "WebGoat was successfully built!"
             }
         } 
-        stage("Dependency analysis"){
-            steps{
-                echo "Performing OSS analysis from the commit..."
-                sh "rm owasp*"
-                sh "wget https://raw.githubusercontent.com/nikita-tazhbenow/WebGoat/develop/owasp-dependency-check.sh"
-                sh "chmod +x owasp-dependency-check.sh"
-                sh "bash owasp-dependency-check.sh"
-                echo "Finished!"
-            }
-        }
         
     }
 }    
