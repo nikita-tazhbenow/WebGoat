@@ -26,7 +26,14 @@ pipeline{
                 echo "Finished!"
             }
         } 
-	stage("Dependency analysis"){
+        stage("Build code"){
+            steps{
+                echo "Building code in progress..."
+                sh "mvn -B -DskipTests clean package"
+                echo "WebGoat was successfully built!"
+            }
+        } 
+        stage("Dependency analysis"){
             steps{
                 echo "Performing OSS analysis from the commit..."
                 sh "rm owasp* || true"
@@ -36,13 +43,5 @@ pipeline{
                 echo "Finished!"
             }
         }
-        stage("Build code"){
-            steps{
-                echo "Building code in progress..."
-                sh "mvn -B -DskipTests clean package"
-                echo "WebGoat was successfully built!"
-            }
-        } 
-        
     }
 }    
