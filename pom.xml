@@ -165,34 +165,7 @@
     </dependencies>
 
 <build>
-	<plugins>
-		        <!-- SpotBugs Static Analysis -->
-        	<!-- SpotBugs Static Analysis -->
-     <plugin>
-         <groupId>com.github.spotbugs</groupId>
-         <artifactId>spotbugs-maven-plugin</artifactId>
-         <version>4.0.4</version>
-         <configuration>
-             <effort>Max</effort>
-             <threshold>Low</threshold>
-             <failOnError>true</failOnError>
-             <includeFilterFile>${session.executionRootDirectory}/spotbugs-security-include.xml</includeFilterFile>
-             <excludeFilterFile>${session.executionRootDirectory}/spotbugs-security-exclude.xml</excludeFilterFile>
-             <plugins>
-                 <plugin>
-                     <groupId>com.h3xstream.findsecbugs</groupId>
-                     <artifactId>findsecbugs-plugin</artifactId>
-                     <version>LATEST</version> <!-- Auto-update to the latest stable -->
-                 </plugin>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<configuration>
-				<source>11</source>
-				<target>11</target>
-				<encoding>UTF-8</encoding>
-			</configuration>
-		</plugin>
+	<plugins>    
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-checkstyle-plugin</artifactId>
@@ -206,6 +179,25 @@
 				<suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
 			</configuration>
 		</plugin>
+		<plugin>
+           		 <groupId>com.github.spotbugs</groupId>
+            	         <artifactId>spotbugs-maven-plugin</artifactId>
+            		 <version>4.0.4</version>
+                         <configuration>
+                		<effort>Max</effort>
+                		<threshold>Low</threshold>
+                		<failOnError>true</failOnError>
+                		<includeFilterFile>${session.executionRootDirectory}/spotbugs-security-include.xml</includeFilterFile>
+                		<excludeFilterFile>${session.executionRootDirectory}/spotbugs-security-exclude.xml</excludeFilterFile>
+                		<plugins>
+                    			<plugin>
+                        			<groupId>com.h3xstream.findsecbugs</groupId>
+                        			<artifactId>findsecbugs-plugin</artifactId>
+                        			<version>1.10.1</version>
+                    			</plugin>
+                		</plugins>
+            		</configuration>
+        	</plugin>
 	</plugins>
 </build>
 
