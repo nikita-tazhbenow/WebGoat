@@ -36,7 +36,8 @@ pipeline{
  	stage("Find-Sec-Bugs invoke"){
             steps{
                 echo "Searching bugs in progress..."
-     		sh 'mvn findbugs:findbugs'
+		sh "mvn compile"    
+     		sh "mvn spotbugs:spotbugs"
      		findbugs canComputeNew: false, defaultEncoding: '', excludePattern: '', healthy: '',
     		includePattern: '', isRankActivated: true, pattern: '**/findbugsXml.xml', unHealthy: ''
 		echo "Finished!"
