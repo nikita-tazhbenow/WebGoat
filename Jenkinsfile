@@ -36,7 +36,6 @@ pipeline{
  	stage("Test"){
             steps{
                 echo "Testing in progress..."
-                sh "mvn test"
                 findbugs canComputeNew: false, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '**/target/findbugsXml.xml', unHealthy: ''
 		echo "Finished!"
             }
