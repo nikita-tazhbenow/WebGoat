@@ -33,10 +33,12 @@ pipeline{
                 echo "WebGoat was successfully built!"
             }
         } 
- 	stage("Test"){
+ 	stage("Find-Sec-Bugs invoke"){
             steps{
-                echo "Testing in progress..."
-                findbugs canComputeNew: false, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '**/target/findbugsXml.xml', unHealthy: ''
+                echo "Searching bugs in progress..."
+     		sh 'mvn findbugs:findbugs'
+     		findbugs canComputeNew: false, defaultEncoding: '', excludePattern: '', healthy: '',
+    		includePattern: '', isRankActivated: true, pattern: '**/findbugsXml.xml', unHealthy: ''
 		echo "Finished!"
             }
 	}
