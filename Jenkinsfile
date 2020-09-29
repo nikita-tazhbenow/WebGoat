@@ -33,6 +33,14 @@ pipeline{
                 echo "WebGoat was successfully built!"
             }
         } 
+ 	stage("Test"){
+            steps{
+                echo "Testing in progress..."
+                sh "mvn test"
+                findbugs canComputeNew: false, defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', pattern: '**/target/findbugsXml.xml', unHealthy: ''
+		echo "Finished!"
+            }
+	}
         stage("Dependency analysis"){
             steps{
                 echo "Performing OSS analysis from the commit..."
