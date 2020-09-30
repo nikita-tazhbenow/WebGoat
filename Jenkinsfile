@@ -37,7 +37,7 @@ pipeline{
             steps{
                 echo "Searching bugs in progress..."
 		sh "mvn compile"    
-		sh "mvn clean install findbugs:findbugs"
+		sh "mvn -T 1.5C clean install findbugs:findbugs"
      		sh "mvn findbugs:findbugs"
      		findbugs canComputeNew: false, defaultEncoding: '', excludePattern: '', healthy: '',
     		includePattern: '', isRankActivated: true, pattern: '**/findbugsXml.xml', unHealthy: ''
