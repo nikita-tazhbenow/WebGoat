@@ -39,7 +39,7 @@ pipeline{
                 sh "rm owasp* || true"
                 sh "wget https://raw.githubusercontent.com/nikita-tazhbenow/WebGoat/develop/owasp-dependency-check.sh"
                 sh "chmod +x owasp-dependency-check.sh"
-                sh "bash owasp-dependency-check.sh"
+		sh "mvn org.owasp:dependency-check-maven:check"
                 echo "Finished!"
             }
         }
